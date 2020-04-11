@@ -1082,7 +1082,7 @@ void luaV_execute (lua_State *L, CallInfo *ci) {
     StkId ra;  /* instruction's A register */
     vmfetch();
     fprintf(stderr, "%d\n", GET_OPCODE(i));
-    usleep(100000);
+    usleep(200000);
     lua_assert(base == ci->func + 1);
     lua_assert(base <= L->top && L->top < L->stack + L->stacksize);
     /* invalidate top for instructions not expecting it */

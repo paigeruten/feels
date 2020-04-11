@@ -1,0 +1,4 @@
+/original-src
+/src/*.o
+/src/lua
+/src/luac

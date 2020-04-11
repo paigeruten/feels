@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>feels v0</title>
+        <meta charset="utf-8">
+        <script src="js/p5/p5.min.js"></script>
+        <script src="js/p5/p5.sound.min.js"></script>
+    </head>
+    <body>
+        <h1>feels v0</h1>
+        <div id="content">
+            <p><em>Connecting...</em></p>
+        </div>
+
+        <script src="js/noisy-particles.js"></script>
+
+        <script type="text/javascript">
+        var content = document.getElementById("content");
+        var uri = 'ws://127.0.0.1:8080/tail';
+        var ws = new WebSocket(uri);
+
+        ws.onopen = function() {
+            content.innerHTML = "<p><em>Connected!</em></p>";
+        }
+
+        ws.onmessage = function(msg) {
+            message(msg.data);
+        };
+        </script>
+    </body>
+</html>
+

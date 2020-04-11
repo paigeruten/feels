@@ -1,0 +1,17 @@
+{
+  "name": "tail-server",
+  "version": "1.0.0",
+  "description": "",
+  "bin": {
+    "tail-server": "./tail-server.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tail-file": "^1.4.13",
+    "ws": "^7.2.0"
+  }
+}

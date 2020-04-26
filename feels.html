@@ -3,29 +3,51 @@
     <head>
         <title>feels v0</title>
         <meta charset="utf-8">
-        <script src="js/p5/p5.min.js"></script>
-        <script src="js/p5/p5.sound.min.js"></script>
+        <script src="js/vendor/p5.min.js"></script>
+        <script src="js/vendor/p5.sound.min.js"></script>
+        <link href="feels.css" rel="stylesheet">
     </head>
     <body>
-        <h1>feels v0</h1>
-        <div id="content">
-            <p><em>Connecting...</em></p>
+        <div id="status">
+            <em>Connecting...</em>
         </div>
 
-        <script src="js/noisy-particles.js"></script>
+        <div id="p5"></div>
 
         <script type="text/javascript">
-        var content = document.getElementById("content");
+        var statusEl = document.getElementById("status");
         var uri = 'ws://127.0.0.1:8080/tail';
         var ws = new WebSocket(uri);
 
         ws.onopen = function() {
-            content.innerHTML = "<p><em>Connected!</em></p>";
+            statusEl.textContent = "Connected!";
+            setTimeout(function () { statusEl.style.display = 'none'; }, 1500);
         }
 
         ws.onmessage = function(msg) {
-            message(msg.data);
+            console.log('running: ' + msg.data);
+            var result = eval(msg.data);
         };
+
+        function setCanvasSize() {
+            var p5El = document.getElementById('p5');
+            resizeCanvas(p5El.clientWidth, p5El.clientHeight);
+        }
+
+        function setup() {
+            var canvas = createCanvas(640, 480);
+            canvas.parent('p5');
+            setCanvasSize();
+
+            background(51);
+        }
+
+        function windowResized() {
+            setCanvasSize();
+        }
+
+        function draw() {
+        }
         </script>
     </body>
 </html>
